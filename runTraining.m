@@ -3,15 +3,16 @@ warning('off','all');
 
 nonOptimized_Accuracy = [];
 optimized_Accuracy = [];
+classifierIndex = 1;
+classifiers = {};
+data = [];
 
-%% ITERATE OVER THE NUMBER OF FOLDS
+
 for fold=1:10
     data=load([pwd,filesep,'DTE',filesep,p_name,filesep,p_name,'-CV-tr-', num2str(fold)]);
     X=data.dtrX; Y=data.dtrY;
     data = [X Y];
-    classifierIndex = 1;
-    classifiers = {};
-    
+   
     
     %% SEPARATE TRAIN / TEST DATA PER FOLD
     cv = cvpartition(data(:,end), 'holdout', 0.2);
