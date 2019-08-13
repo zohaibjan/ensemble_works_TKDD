@@ -1,4 +1,3 @@
-"# ensemble_works_TKDD" 
 Please cite at least one of the following papers if you like to use the works:
 Jan, Z.M. and Verma, B., 2019, June. Ensemble Classifier Optimization by Reducing Input Features and Base Classifiers. In 2019 IEEE Congress on Evolutionary Computation (CEC) (pp. 1580-1587). IEEE.
 
