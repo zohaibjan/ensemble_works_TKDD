@@ -8,13 +8,13 @@ classifiers = {};
 data = [];
 
 
-for fold=1:10
-    data=load([pwd,filesep,'DTE',filesep,p_name,filesep,p_name,'-CV-tr-', num2str(fold)]);
+for f=1:10
+    data=load([pwd,filesep,'DTE',filesep,p_name,filesep,p_name,'-CV-tr-', num2str(f)]);
     X=data.dtrX; Y=data.dtrY;
     data = [X Y];
    
     
-    %% SEPARATE TRAIN / TEST DATA PER FOLD
+    %% SEPARATE TRAIN / TEST DATA 
     cv = cvpartition(data(:,end), 'holdout', 0.2);
     idxs = cv.test;
     testData = data(idxs,:);
@@ -67,8 +67,8 @@ for fold=1:10
         selectedClassifiers{1,i} = classifiers{1, psoEnsemble(i)};
     end
     
-    nonOptimized_Accuracy(fold) = fusion(classifiers, [testX, testy]);
-    optimized_Accuracy(fold) = fusion(selectedClassifiers, [testX, testy]);
+    nonOptimized_Accuracy(f) = fusion(classifiers, [testX, testy]);
+    optimized_Accuracy(f) = fusion(selectedClassifiers, [testX, testy]);
 end
 results.nonOptimized_Accuracy = mean(nonOptimized_Accuracy);
 results.nonOptimized_stdDEV = std(nonOptimized_Accuracy);
