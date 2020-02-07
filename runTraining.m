@@ -8,7 +8,7 @@ classifiers = {};
 data = [];
 
 
-for f=1:10
+for f=1:params.numOfFolds
     data=load([pwd,filesep,'DTE',filesep,p_name,filesep,p_name,'-CV-tr-', num2str(f)]);
     X=data.dtrX; Y=data.dtrY;
     traindata = [X Y];
