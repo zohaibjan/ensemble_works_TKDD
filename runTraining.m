@@ -11,15 +11,12 @@ data = [];
 for f=1:10
     data=load([pwd,filesep,'DTE',filesep,p_name,filesep,p_name,'-CV-tr-', num2str(f)]);
     X=data.dtrX; Y=data.dtrY;
-    data = [X Y];
+    traindata = [X Y];
    
-    
-    %% SEPARATE TRAIN / TEST DATA 
-    cv = cvpartition(data(:,end), 'holdout', 0.2);
-    idxs = cv.test;
-    testData = data(idxs,:);
-    trainData = data(~idxs, :);
-    
+    testdata=load([pwd,filesep,'DTE',filesep,p_name,filesep,p_name,'-CV-ts-', num2str(f)]);
+    testX = testdata.dtsX;
+    testy = testdata.dtsY;
+       
     %% SEPARATE VALIDATION DATA
     cvv = cvpartition(trainData(:,end), 'holdout', 0.1);
     idxs = cvv.test;
@@ -29,16 +26,10 @@ for f=1:10
     trainX = trainData(:, 1:end-1);
     trainy = trainData(:, end);
     
-    testX = testData(:, 1:end-1);
-    testy = testData(:, end);
-    
     valX = valData(:, 1:end-1);
     valy = valData(:, end);
     
     allClusters = generateClustersv2([trainX, trainy], params);
-    
-    %     allClusters = generateClusters([trainX, trainy], params);
-    %     allClusters = balanceClusters(allClusters, [trainX trainy]);
     
     bestClusters = clusteringPSO(allClusters, [valX  valy], params);
     bestClusters = find(bestClusters.chromosome);
