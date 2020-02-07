@@ -3,7 +3,8 @@ warning('off','all');
 allPredictions = zeros(length(testData(:,end)), length(allClusters));
 for j = 1:length(allClusters)
     all = [];
-    all = trainClassifiers(allClusters{1,j}(:,1:end-1), allClusters{1,j}(:,end), params);
+    params.classifiers = {'SVM'};
+    all = trainClassifiers(allClusters{1,j}(:,1:end-1), allClusters{1,j}(:,end), testData(:, 1:end-1), testData(:, end), params);
     allPredictions(:, j) = fusionPSO(all, testData);
 end
 %set optimization function to PSOAF
