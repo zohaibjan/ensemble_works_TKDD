@@ -1,12 +1,29 @@
-Please cite at least one of the following papers if you like to use the works:
-Jan, Z.M. and Verma, B., 2019, June. Ensemble Classifier Optimization by Reducing Input Features and Base Classifiers. In 2019 IEEE Congress on Evolutionary Computation (CEC) (pp. 1580-1587). IEEE.
+# Clustering and Optimisation for Classifier Ensembles
 
-Jan, Z.M., Verma, B. and Fletcher, S., 2018, July. Optimizing clustering to promote data diversity when generating an ensemble classifier. In Proceedings of the Genetic and Evolutionary Computation Conference Companion (pp. 1402-1409). ACM.
+MATLAB research experiments exploring data diversity, clustering, feature reduction and base-classifier selection.
 
+## Associated publications
 
-How to use 
-You should run the mainprogram.m file
+- Jan, Z. M. and Verma, B. (2019). Ensemble Classifier Optimization by Reducing Input Features and Base Classifiers. IEEE Congress on Evolutionary Computation (CEC), pp. 1580–1587.
+- Jan, Z. M., Verma, B. and Fletcher, S. (2018). Optimizing clustering to promote data diversity when generating an ensemble classifier. Genetic and Evolutionary Computation Conference Companion, pp. 1402–1409. ACM.
 
-Dataset 
-Datasets are already placed in the DTE folder short for Data Training Environment. All datasets are directly downloaded from UCI repository and are converted to MAT files. 10-fold cross validated folds are already created so to speed up the training process.
-This work uses Matlabs builtin GAOPtimization Toolbox, and NeuralNetwork toolbox. 
+Please cite the relevant publication when using this work.
+
+## Getting started
+
+1. Inspect and extract `DTE.7z` if the expected `DTE` directory is not present.
+2. Open `mainProgram.m` in MATLAB and review dataset and experiment settings.
+3. Ensure the optimisation and neural-network toolboxes required by the source are installed.
+4. Run `mainProgram`.
+
+The original dataset notes identify UCI datasets converted to MAT files, with pre-created ten-fold splits. Check the original dataset terms and the actual split files before reuse.
+
+## Code map
+
+Clustering helpers feed `runTraining.m`; `trainClassifiers.m` builds base learners; the fusion and PSO helpers select/combine predictions; `saveResults.m` exports results.
+
+## Status
+
+Historical research implementation. Repository documentation has been organised; experiments have not been rerun or independently reproduced.
+
+[Profile and project directory](https://github.com/zohaibjan)
