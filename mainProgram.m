@@ -1,4 +1,4 @@
-function program = mainProgram()
+function mainProgram()
 
 addpath(genpath('P-Data'));
 Problem={'breast-cancer-wisconsin','diabetic_retinopathy','ecoli',...
@@ -17,7 +17,7 @@ params.trainFunctionDiscriminant = {'pseudoLinear','pseudoQuadratic'};
 params.kernelFunctionSVM={'gaussian','polynomial','linear'};
 
 %% MAIN LOOP
-parfor i = 1:length(Problem)
+for i = 1:length(Problem)
     results = {};
     nonOptimized_Accuracy = [];
     optimized_Accuracy = [];

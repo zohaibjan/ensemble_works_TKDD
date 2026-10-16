@@ -1,17 +1,16 @@
 function results = runTraining(p_name , params)
-warning('off','all');
 
 nonOptimized_Accuracy = [];
 optimized_Accuracy = [];
-classifierIndex = 1;
-classifiers = {};
-data = [];
+
 
 
 for f=1:params.numOfFolds
+    classifierIndex = 1;
+    classifiers = {};
     data=load([pwd,filesep,'DTE',filesep,p_name,filesep,p_name,'-CV-tr-', num2str(f)]);
     X=data.dtrX; Y=data.dtrY;
-    traindata = [X Y];
+    trainData = [X Y];
    
     testdata=load([pwd,filesep,'DTE',filesep,p_name,filesep,p_name,'-CV-ts-', num2str(f)]);
     testX = testdata.dtsX;

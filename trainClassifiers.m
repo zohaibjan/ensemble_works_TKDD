@@ -80,7 +80,7 @@ try
                 %% Neural Network
             case 'ANN'
                 classifiers{index}.name = 'ANN';
-                classifiers{index}.model = trainNN(X, y, params, p);
+                classifiers{index}.model = trainNN(X, y);
                 index = index + 1;
                 
             case 'RBFNN'
