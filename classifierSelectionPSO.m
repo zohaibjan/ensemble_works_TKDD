@@ -9,18 +9,18 @@ try
     lb=zeros(1,length(classifierList));
     ub=ones(1,length(classifierList));
     [best,fval,exitflag,output]=particleswarm(fun, length(classifierList),lb,ub,options2);
-    obj.chromosome=round(best);
+    obj.chromosome=double(selectionMask(best, 0.6));
     obj.fval=fval;
     obj.output=output;
 catch exc
-    disp(sprintf('problem with %s', exc.identifier));
+    rethrow(exc);
 end
 
 
 %% OBJECTIVE FUNCTION
     function error=PSOAF(c)
         % BINARIZE THE CLASSIFIER SELECTION
-        c = c > 0.6; 
+        c = selectionMask(c, 0.6); 
         c = find(c);
         
         %% CALCULATE THE ACCURACY

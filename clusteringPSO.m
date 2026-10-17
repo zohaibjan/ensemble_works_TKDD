@@ -13,14 +13,14 @@ options2 = optimoptions('particleswarm','SwarmSize',50);
 lb=zeros(1,size(allPredictions,2));
 ub=ones(1,size(allPredictions,2));
 [best,fval,exitflag,output]=particleswarm(fun, size(allPredictions,2),lb,ub,options2);
-obj.chromosome=round(best);
+obj.chromosome=double(selectionMask(best, 0.6));
 obj.fval=fval;
 obj.output=output;
 
 %% OBJECTIVE FUNCTION
 function error=PSOAF(c)
 % BINARIZE THE CLASSIFIER SELECTION
-c = c > 0.6;
+c = selectionMask(c, 0.6);
 c = find(c);
 
 %% CALCULATE THE ACCURACY
