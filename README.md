@@ -43,6 +43,10 @@ The seed is a starting point for recording runs; nested seed resets, parallel wo
 
 Fold state is isolated and the restored SVM helper remains in place. ANN/RBF outputs retain the training label vocabulary, and the legacy pattern trainer now defines its input matrix. PSO uses its existing >0.6 threshold consistently during scoring and return; empty masks retain the highest-weight candidate. Prediction failures propagate instead of becoming class-one placeholder votes. The default driver repeats each dataset ten times, and `runMultiple.m` repeats that complete driver another 50 times.
 
+## Runtime follow-up — October 2026
+
+PSO now accepts optional solver options for bounded smoke tests while retaining the historical >0.6 selection threshold.
+
 ## Correctness review — October 2026
 
 This pass fixes implementation defects; it does not validate the associated research results. Changes can alter model pools, predictions and measured scores. Re-run the experiments before comparing corrected code with historical CSVs or published results.
@@ -54,6 +58,6 @@ This pass fixes implementation defects; it does not validate the associated rese
 
 See [the code review](docs/code-review.md) for repository-specific changes, tests and remaining limitations.
 
-**Validation:** all MATLAB sources were statically parsed/linted with MISS_HIT. MATLAB and its learner toolboxes are unavailable in the review environment. The MATLAB regression suites and full training runs have **not been executed** here. Run `runtests('tests')` and `assertSuccess(results)` in MATLAB before using the corrected experiments.
+**Validation:** 18 regression/smoke tests passed in MATLAB R2024b on Linux through [GitHub Actions](https://github.com/zohaibjan/ensemble_works_TKDD/actions/workflows/matlab-tests.yml). Tests include real toolbox execution on synthetic data. Full research datasets and published accuracy results have not been reproduced. See [validation evidence and limits](docs/validation.md).
 
 [Profile and project directory](https://github.com/zohaibjan)
