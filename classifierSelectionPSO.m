@@ -1,4 +1,8 @@
-function obj=classifierSelectionPSO(classifierList, testData)
+function obj=classifierSelectionPSO(classifierList, testData, solverOptions)
+
+if nargin < 3
+    solverOptions = [];
+end
 
 try
 
@@ -6,6 +10,9 @@ try
     %set optimization function to PSOAF
     fun = @PSOAF;
     options2 = optimoptions('particleswarm','SwarmSize',50);
+    if ~isempty(solverOptions)
+        options2 = solverOptions;
+    end
     lb=zeros(1,length(classifierList));
     ub=ones(1,length(classifierList));
     [best,fval,exitflag,output]=particleswarm(fun, length(classifierList),lb,ub,options2);
